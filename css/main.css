@@ -1,0 +1,12 @@
+#container{
+	position:relative;
+	height: 200px;
+	width:900px;
+	background-color : yellow;
+}
+
+#runner{
+	position:absolute;
+	bottom:0px;
+	left:40px;
+}
