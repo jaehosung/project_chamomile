@@ -1,8 +1,8 @@
 #container{
 	position:relative;
 	height: 200px;
-	width:900px;
-	background-color : yellow;
+	width: 700px;
+	background-color : grey;
 }
 
 #runner{
