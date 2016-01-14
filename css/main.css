@@ -1,12 +1,26 @@
+body{
+    margin-left: 0px;
+}
 #container{
-	position:relative;
-	height: 200px;
-	width: 700px;
-	background-color : grey;
+    position:relative;
+    height: 200px;
+    width: 700px;
+    background-color : grey;
 }
 
 #runner{
-	position:absolute;
-	bottom:0px;
-	left:40px;
+    position:absolute;
+    bottom:0px;
+    left:40px;
+}
+
+#roadContainer{
+    position: absolute;
+    bottom: 0px;
+    width: 1200px;
+}
+
+.road{
+    position: relative;
+    float: left;
 }

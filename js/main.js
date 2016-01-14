@@ -1,5 +1,7 @@
 /* Key operation */
 $(document).ready(function(){
+    mapMove($("#roadContainer"),mapMoveDelta,1000);
+
     $(document).keydown(function(e){
         if(e.keyCode==32 && getBottomLoc()==0){
             jumpSound();
