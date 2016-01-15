@@ -20,7 +20,7 @@ function animate(opts) {
 
 //Main function
 function jumpRunner(element,delta,duration){
-    var to = 100;
+    var to = 150;
     animate({
         delay : 10,
         duration : duration || 1000,

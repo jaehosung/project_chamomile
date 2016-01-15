@@ -1,9 +1,12 @@
 body{
     margin-left: 0px;
 }
+#timer{
+    display: flex;
+}
 #container{
     position:relative;
-    height: 200px;
+    height: 300px;
     width: 700px;
     background-color : grey;
 }
