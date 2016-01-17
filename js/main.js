@@ -1,22 +1,29 @@
+var mapSpeed =1000;
+var itemObj;
+
 /* Key operation */
 $(document).ready(function(){
+    // Declare Item Object -> after image load
+    itemObj = new Item($("#item1"),false,10);
+
     // Timer Setting 
     var timeGameStart = new Date;
     setTimer(timeGameStart);
 
+
     // Start Map animation
-    var mapSpeed =1000;
     mapMove($("#roadContainer"),linearDelta,mapSpeed);
+
 
     //Keyoperation
     $(document).keydown(function(e){
         if(e.keyCode==32 && getBottomLoc()==0){
             jumpSound();
             jumpRunner($("#runner"),jumpDelta,500);
-            itemMove($("#item1"),linearDelta,mapSpeed*($("#container").outerWidth(true)+$("#item1").outerWidth(true))/$(".road").outerWidth(true));
         }
     });
-    $(document).keydown(function(e){//#TODO Crawl Animation
+//#TODO Crawl Animation
+    $(document).keydown(function(e){
         if(e.keyCode==40 && getBottomLoc()==0){
         }
     });
@@ -25,11 +32,13 @@ $(document).ready(function(){
 /* Set Timmer Setting*/
 function setTimer(timeGameStart){
     var id = setInterval(function(){
+
         var ratio = 10; // ratio(sec) = 1 hour
         var passedTime_ms = new Date - timeGameStart;
         var timeSets = getTimeSets(passedTime_ms/ratio);
         $("#days").text(timeSets.days);
         $("#hours").text(timeSets.hours);
+        throwItem(timeSets.days,itemObj);
     },100);
 }
 
