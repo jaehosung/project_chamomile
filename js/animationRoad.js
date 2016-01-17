@@ -5,7 +5,7 @@ function mapMove(element,delta,duration){
     roadAnimate({
         element : element,
         delay : 1,
-        duration : duration || 1000,
+        duration : duration,
         delta :delta,
         operation : function(delta){
             element.css("left",-1*delta*to+ "px");
@@ -27,7 +27,7 @@ function roadAnimate(opts) {
 
         if(progress >=1){
             clearInterval(id);
-            mapMove(opts.element,mapMoveDelta,opts.duration);
+            mapMove(opts.element,linearDelta,opts.duration);
             $("#road1").attr("src",$("#road2").attr("src"));
             $("#road2").attr("src",$("#road3").attr("src"));
             var src = "imgs/roadtest"+Math.floor(Math.random()*3+1)+".png";
@@ -38,6 +38,6 @@ function roadAnimate(opts) {
 
 
 
-// Delta for MapMove
-function mapMoveDelta(p){ return p;};
+//linear Delta
+function linearDelta(p){ return p;};
 

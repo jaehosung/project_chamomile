@@ -11,8 +11,14 @@ body{
     background-color : grey;
 }
 
+#item1{
+    position: absolute;
+    bottom: 0px;
+    right: -144px;
+}
+
 #runner{
-    position:absolute;
+    position: absolute;
     bottom:0px;
     left:40px;
 }

@@ -5,13 +5,15 @@ $(document).ready(function(){
     setTimer(timeGameStart);
 
     // Start Map animation
-    mapMove($("#roadContainer"),mapMoveDelta,1000);
+    var mapSpeed =1000;
+    mapMove($("#roadContainer"),linearDelta,mapSpeed);
 
     //Keyoperation
     $(document).keydown(function(e){
         if(e.keyCode==32 && getBottomLoc()==0){
             jumpSound();
             jumpRunner($("#runner"),jumpDelta,500);
+            itemMove($("#item1"),linearDelta,mapSpeed*($("#container").outerWidth(true)+$("#item1").outerWidth(true))/$(".road").outerWidth(true));
         }
     });
     $(document).keydown(function(e){//#TODO Crawl Animation
