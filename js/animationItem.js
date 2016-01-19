@@ -16,9 +16,10 @@ function itemMove(element,delta,duration){
 };
 
 //Item Animation
+var idItem;
 function itemAnimate(opts) {
     var start = new Date;
-    var id = setInterval(function(){
+    idItem = setInterval(function(){
         var timePassed = new Date - start;
         var progress = timePassed/opts.duration;
 
@@ -28,7 +29,7 @@ function itemAnimate(opts) {
         opts.operation(delta);
 
         if(progress >=1){
-            clearInterval(id);
+            clearInterval(idItem);
         }
     },opts.delay);
 }

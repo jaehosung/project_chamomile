@@ -29,12 +29,19 @@ $(document).ready(function(){
     });
 });
 // Game Loop
-function loop(){
+function loop(timeObj){
+    throwItem(timeObj.days,itemObj);
     console.log(collisionCheck($("#runner"),itemObj.src));
     if(collisionCheck($("#runner"),itemObj.src)&&itemObj.get==false){
         itemObj.get=true;
         itemSound();
+        clearInterval(idItem);
+        displayItem(itemObj);
+        //#TODO Showing Item bottom of the screen
     }
+}
+function displayItem(item){
+    item.src.css("top",300);
 }
 
 /* Set Timmer Setting*/
@@ -46,8 +53,7 @@ function setTimer(timeGameStart){
         var timeSets = getTimeSets(passedTime_ms/ratio);
         $("#days").text(timeSets.days);
         $("#hours").text(timeSets.hours);
-        throwItem(timeSets.days,itemObj);
-        loop();
+        loop(timeSets);
     },100);
 }
 
