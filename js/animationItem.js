@@ -13,7 +13,7 @@ function itemMove(element,delta,duration){
     var containerWidth = $("#container").outerWidth(true);
     var itemWidth = element.outerWidth(true);
     var to = itemWidth + containerWidth;
-    itemAnimate({
+    return itemAnimate({
         element : element,
         delay : 1,
         duration : duration,
@@ -43,14 +43,15 @@ function itemAnimate(opts) {
             clearInterval(idItem);
         }
     },opts.delay);
+    console.log(idItem);
+    return idItem;
 }
 
 
 function throwItem(time,_item){
     if(time == _item.date && _item.show == false){
         _item.show = true;
-        console.log(_item);
-        itemMove(_item.src,linearDelta,mapSpeed*($("#container").outerWidth(true)+_item.width)/$(".road").outerWidth(true));
+        return itemMove(_item.src,linearDelta,mapSpeed*($("#container").outerWidth(true)+_item.width)/$(".road").outerWidth(true));
     }
 }
 
@@ -61,6 +62,7 @@ function collisionCheck(element1, element2){
     return !( ((a.y + a.height) < (b.y)) || (a.y > (b.y + b.height)) || ((a.x + a.width) < b.x) || (a.x > (b.x + b.width)) );
 }
 
+/* Object properties for Collision Check*/
 function GameObj(element){
     this.x = element.offset().left;
     this.y = element.offset().top;

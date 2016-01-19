@@ -16,21 +16,14 @@ $(document).ready(function(){
 
     // Start Map animation
     mapMove($("#roadContainer"),linearDelta,mapSpeed);
+    
+    // Key operation
+    keyOperation();
 
 
-    //Keyoperation
-    $(document).keydown(function(e){
-        if(e.keyCode==32 && getBottomLoc()==0){
-            jumpSound();
-            jumpRunner($("#runner"),jumpDelta,500);
-        }
-    });
-//#TODO Crawl Animation
-    $(document).keydown(function(e){
-        if(e.keyCode==40 && getBottomLoc()==0){
-        }
-    });
 });
+
+var idItems;
 // Game Loop
 function loop(timeObj){
     //throwItem(timeObj.days,itemObj);
@@ -45,35 +38,12 @@ function loop(timeObj){
     */
 
     for(var i = 0; i< Memories.length; i++){
-        console.log("execute");
-        throwItem(timeObj.days,Memories[i].item);
+        idItems= throwItem(timeObj.days,Memories[i].item);
     }
 }
+//#TODO after get the item it gonna display under the game board
 function displayItem(item){
     item.src.css("top",300);
-}
-
-/* Set Timmer Setting*/
-function setTimer(timeGameStart){
-    var id = setInterval(function(){
-
-        var ratio = 10; // ratio(sec) = 1 hour
-        var passedTime_ms = new Date - timeGameStart;
-        var timeSets = getTimeSets(passedTime_ms/ratio);
-        $("#days").text(timeSets.days);
-        $("#hours").text(timeSets.hours);
-        loop(timeSets);
-    },100);
-}
-
-/* Parse time to day hour */
-function getTimeSets(time){
-    var hours = Math.floor(time%24);
-    var days = Math.floor(time/24);
-    return {
-        'days': days,
-        'hours': hours
-    };
 }
 
 /*Functions for location*/
@@ -83,16 +53,3 @@ function getBottomLoc(){
 function calTopLoc(bottomLoc){
     return $("#container").outerHeight(true)-(bottomLoc+$("#runner").outerHeight(true));
 }
-
-
-
-/*#TODO Crawl Animation
-function crawlAnimation(){
-    $("#runner").animate({
-        height:"40px",
-    width : $("#runner").outerWidth(true)+"px"
-    },speed).animate({
-        height:"80px"
-    },speed);
-}
-*/
