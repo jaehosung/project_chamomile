@@ -37,6 +37,7 @@ function jumpDelta(p){ return -4*Math.pow(p,2)+4*p;};
 // Sound for Jump
 function jumpSound(){
     var jumpAudio = new Audio('src/jumpAudio.wav');
+    jumpAudio.volume = 0.1;
     jumpAudio.play();
 }
 

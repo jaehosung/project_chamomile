@@ -28,6 +28,14 @@ $(document).ready(function(){
         }
     });
 });
+// Game Loop
+function loop(){
+    console.log(collisionCheck($("#runner"),itemObj.src));
+    if(collisionCheck($("#runner"),itemObj.src)&&itemObj.get==false){
+        itemObj.get=true;
+        itemSound();
+    }
+}
 
 /* Set Timmer Setting*/
 function setTimer(timeGameStart){
@@ -39,6 +47,7 @@ function setTimer(timeGameStart){
         $("#days").text(timeSets.days);
         $("#hours").text(timeSets.hours);
         throwItem(timeSets.days,itemObj);
+        loop();
     },100);
 }
 
