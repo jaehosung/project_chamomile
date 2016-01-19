@@ -1,13 +1,22 @@
 //function for Item Animation
+/* Item Object Properties */
+function Item(src,date){
+    this.src = src;
+    this.width = src.outerWidth(true);
+    this.loc = src.outerWidth(true)*-1;
+    this.get = false
+    this.show = false;
+    this.date = date;
+}
 //Main funtion
 function itemMove(element,delta,duration){
     var containerWidth = $("#container").outerWidth(true);
-    var itemWidth = $("#item1").outerWidth(true);
+    var itemWidth = element.outerWidth(true);
     var to = itemWidth + containerWidth;
     itemAnimate({
         element : element,
         delay : 1,
-        duration : duration || 1000,
+        duration : duration,
         delta :delta,
         operation : function(delta){
             element.css("right",-1*itemWidth+to*delta+ "px");
@@ -16,10 +25,12 @@ function itemMove(element,delta,duration){
 };
 
 //Item Animation
-var idItem;
+
+//This variable is for To stop this animation
+
 function itemAnimate(opts) {
     var start = new Date;
-    idItem = setInterval(function(){
+    var idItem = setInterval(function(){
         var timePassed = new Date - start;
         var progress = timePassed/opts.duration;
 
@@ -34,15 +45,6 @@ function itemAnimate(opts) {
     },opts.delay);
 }
 
-/* Item Object Properties */
-function Item(src,get,date){
-    this.src = src;
-    this.width = src.outerWidth(true);
-    this.loc = src.outerWidth(true)*-1;
-    this.get = false
-    this.show = false;
-    this.date = date;
-}
 
 function throwItem(time,_item){
     if(time == _item.date && _item.show == false){

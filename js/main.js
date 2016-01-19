@@ -3,6 +3,9 @@ var itemObj;
 
 /* Key operation */
 $(document).ready(function(){
+
+    memoriesSet();
+
     // Declare Item Object -> after image load
     itemObj = new Item($("#item1"),false,10);
 
@@ -30,14 +33,20 @@ $(document).ready(function(){
 });
 // Game Loop
 function loop(timeObj){
-    throwItem(timeObj.days,itemObj);
-    console.log(collisionCheck($("#runner"),itemObj.src));
+    //throwItem(timeObj.days,itemObj);
+    /*
     if(collisionCheck($("#runner"),itemObj.src)&&itemObj.get==false){
         itemObj.get=true;
         itemSound();
         clearInterval(idItem);
         displayItem(itemObj);
         //#TODO Showing Item bottom of the screen
+    }
+    */
+
+    for(var i = 0; i< Memories.length; i++){
+        console.log("execute");
+        throwItem(timeObj.days,Memories[i].item);
     }
 }
 function displayItem(item){
