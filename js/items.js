@@ -4,7 +4,8 @@
 var Memories = new Array(
         { imgName: "mountain", date: 5, message: "Go To mountain"},
         { imgName: "starwars", date: 10, message: "Watch Starwars"},
-        { imgName: "river", date:15, message: "Han river date"}
+        { imgName: "river", date:15, message: "Han river date"},
+        { imgName: "test", date: 30, message: "Go To mountain"}
         );
 
 
@@ -13,7 +14,7 @@ function memoriesAnimation(){
     for(var i = 0; i< Memories.length; i++){
         imgQuery = $("#"+Memories[i].imgName);
         imgQuery.css("position","absolute");
-        imgQuery.css("bottom",0);
+        imgQuery.css("bottom",100);
         imgQuery.css("right",-1*imgQuery.outerWidth(true));
         Memories[i].item = new Item(imgQuery,Memories[i].date);
     }

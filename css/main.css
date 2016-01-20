@@ -10,13 +10,6 @@ body{
     width: 700px;
     background-color : grey;
 }
-/*TODO */
-#item1{
-    position: absolute;
-    width: 72px;
-    bottom: 0px;
-    right: -72px;
-}
 
 #runner{
     position: absolute;

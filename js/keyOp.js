@@ -4,8 +4,6 @@ function keyOperation(){
         if(e.keyCode==32 && getBottomLoc()==0){
             jumpSound();
             jumpRunner($("#runner"),jumpDelta,500);
-            console.log(idItems);
-            clearInterval(idItems);
         }
     });
     //#TODO Crawl Animation

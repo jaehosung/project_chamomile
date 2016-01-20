@@ -41,6 +41,15 @@ function jumpSound(){
     jumpAudio.play();
 }
 
+/*Functions for Runner's location*/
+function getBottomLoc(){
+    return $("#container").outerHeight(true)-($("#runner").position().top+$("#runner").outerHeight(true));
+}
+function calTopLoc(bottomLoc){
+    return $("#container").outerHeight(true)-(bottomLoc+$("#runner").outerHeight(true));
+}
+
+
 /* Crawl Animaton and Sound */
 
 //Main function
