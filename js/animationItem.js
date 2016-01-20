@@ -8,7 +8,40 @@ function Item(src,date){
     this.show = false;
     this.date = date;
 }
-//Main funtion
+
+/* Main Memories Function */
+function memoriesAnimation(){
+    //Initial Setting 
+    for(var i = 0; i< Memories.length; i++){
+        imgQuery = $("#"+Memories[i].imgName);
+        imgQuery.css("position","absolute");
+        imgQuery.css("bottom",0); //#TODO How about display items randomly
+        imgQuery.css("right",-1*imgQuery.outerWidth(true));
+        Memories[i].item = new Item(imgQuery,Memories[i].date);
+    }
+
+}
+/* Check whether Images are loads or not */
+function memoriesSet(){
+    var imagesCount = Memories.length;
+    var imagesLoaded = 0;
+    var img = new Array();
+    for(var i = 0; i< Memories.length; i++){
+        img[i]= document.createElement("img");
+        img[i].src ="imgs/memories/"+Memories[i].imgName+".png";
+        img[i].id = Memories[i].imgName;
+        $("#container").append(img[i]);
+    }
+    for(var i = 0; i<Memories.length; i++){
+        img[i].onload = function(){
+            imagesLoaded ++;
+            if(imagesLoaded == imagesCount){
+                memoriesAnimation();
+            }
+        }
+    }
+}
+/* Moving Main Function*/
 function itemMove(element,delta,duration,nth){
     var containerWidth = $("#container").outerWidth(true);
     var itemWidth = element.outerWidth(true);
