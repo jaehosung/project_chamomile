@@ -9,6 +9,19 @@ function Item(src,date){
     this.date = date;
 }
 
+/*Display Memories function (loop)*/
+function displayMemories(timeObj){
+    for(var i = 0; i< Memories.length; i++){
+        throwItem(timeObj.days,Memories[i],i);
+        if(collisionCheck($("#runner"),Memories[i].item.src)&&Memories[i].item.get==false){
+            Memories[i].item.get=true;
+            itemSound();
+            clearInterval(Memories[i].idItem);
+            displayItem(Memories[i].item);
+            //#TODO Showing Item bottom of the screen
+        }
+    }
+}
 /* Main Memories Function */
 function memoriesAnimation(){
     //Initial Setting 

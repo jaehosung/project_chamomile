@@ -1,7 +1,8 @@
 //function for animation
+var idRunner
 function animate(opts) {
     var start = new Date;
-    var id = setInterval(function(){
+    idRunner = setInterval(function(){
         var timePassed = new Date - start;
         var progress = timePassed/opts.duration;
 
@@ -11,7 +12,7 @@ function animate(opts) {
         opts.operation(delta);
 
         if(progress ==1){
-            clearInterval(id)
+            clearInterval(idRunner);
         }
     },opts.delay);
 }
@@ -22,7 +23,7 @@ function animate(opts) {
 function jumpRunner(element,delta,duration){
     var to = 150;
     animate({
-        delay : 10,
+        delay : 1,
         duration : duration || 1000,
         delta :delta,
         operation : function(delta){

@@ -13,10 +13,11 @@ function mapMove(element,delta,duration){
     });
 };
 
+var idRoad;
 //Road Animation
 function roadAnimate(opts) {
     var start = new Date;
-    var id = setInterval(function(){
+    idRoad = setInterval(function(){
         var timePassed = new Date - start;
         var progress = timePassed/opts.duration;
 
@@ -26,7 +27,7 @@ function roadAnimate(opts) {
         opts.operation(delta);
 
         if(progress >=1){
-            clearInterval(id);
+            clearInterval(idRoad);
             mapMove(opts.element,linearDelta,opts.duration);
             $("#road1").attr("src",$("#road2").attr("src"));
             $("#road2").attr("src",$("#road3").attr("src"));
