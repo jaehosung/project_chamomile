@@ -1,4 +1,5 @@
 var mapSpeed = 1000;
+var gameOver = false;
 /* Key operation */
 $(document).ready(function(){
     //Load Item Images
@@ -38,4 +39,5 @@ function gameStop(){
         clearInterval(Memories[i].idItem);
     }
     clearInterval(idRoad);
+    gameOver = true;
 }

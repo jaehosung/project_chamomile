@@ -1,7 +1,9 @@
 function keyOperation(){
     //Keyoperation
     $(document).keydown(function(e){
-        if(e.keyCode==32 && getBottomLoc()==0){
+        if(gameOver==true){
+            location.reload();
+        }else if(e.keyCode==32 && getBottomLoc()==0){
             jumpSound();
             jumpRunner($("#runner"),jumpDelta,500);
         }
