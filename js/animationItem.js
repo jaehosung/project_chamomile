@@ -9,12 +9,13 @@ function Item(src,date){
     this.date = date;
 }
 //Main funtion
-function itemMove(element,delta,duration){
+function itemMove(element,delta,duration,nth){
     var containerWidth = $("#container").outerWidth(true);
     var itemWidth = element.outerWidth(true);
     var to = itemWidth + containerWidth;
-    return itemAnimate({
+    itemAnimate({
         element : element,
+        nth : nth,
         delay : 1,
         duration : duration,
         delta :delta,
@@ -30,7 +31,7 @@ function itemMove(element,delta,duration){
 
 function itemAnimate(opts) {
     var start = new Date;
-    var idItem = setInterval(function(){
+    Memories[opts.nth].idItem = setInterval(function(){
         var timePassed = new Date - start;
         var progress = timePassed/opts.duration;
 
@@ -40,18 +41,16 @@ function itemAnimate(opts) {
         opts.operation(delta);
 
         if(progress >=1){
-            clearInterval(idItem);
+            clearInterval(Memories[opts.nth].idItem);
         }
     },opts.delay);
-    console.log(idItem);
-    return idItem;
 }
 
 
-function throwItem(time,_item){
-    if(time == _item.date && _item.show == false){
-        _item.show = true;
-        return itemMove(_item.src,linearDelta,mapSpeed*($("#container").outerWidth(true)+_item.width)/$(".road").outerWidth(true));
+function throwItem(time,memories,nth){
+    if(time == memories.item.date && memories.item.show == false){
+        memories.item.show = true;
+        itemMove(memories.item.src,linearDelta,mapSpeed*($("#container").outerWidth(true)+memories.item.width)/$(".road").outerWidth(true),nth);
     }
 }
 

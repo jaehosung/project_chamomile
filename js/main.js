@@ -38,7 +38,7 @@ function loop(timeObj){
     */
 
     for(var i = 0; i< Memories.length; i++){
-        idItems= throwItem(timeObj.days,Memories[i].item);
+        throwItem(timeObj.days,Memories[i],i);
     }
 }
 //#TODO after get the item it gonna display under the game board
