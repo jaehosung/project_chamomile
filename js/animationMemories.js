@@ -49,7 +49,8 @@ function memoriesSet(){
         img[i].onload = function(){
             imagesLoaded ++;
             if(imagesLoaded == imagesCount){
-                memoriesAnimation();
+               memoriesAnimation();
+               memoriesOnload = true;
             }
         }
     }

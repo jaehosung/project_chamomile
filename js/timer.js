@@ -1,4 +1,6 @@
 /* Set Timmer Setting*/
+var obsOnload = false;
+var memoriesOnload = false;
 var idLoop;
 function setTimer(timeGameStart){
     idLoop = setInterval(function(){
@@ -9,7 +11,10 @@ function setTimer(timeGameStart){
         $("#days").text(timeSets.days);
         $("#hours").text(timeSets.hours);
 
-        loop(timeSets);
+        if(obsOnload==true&&memoriesOnload ==true){
+            loop(timeSets);
+        }
+
     },1);
 }
 
@@ -19,6 +24,6 @@ function getTimeSets(time){
     var days = Math.floor(time/24);
     return {
         'days': days,
-        'hours': hours
+            'hours': hours
     };
 }

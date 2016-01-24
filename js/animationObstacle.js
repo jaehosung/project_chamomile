@@ -1,42 +1,43 @@
-var obsArray = new Array(
-        // Set Obstacle Types
-        /*
-           { date: 3, type: 0, loc : 0, show:false },
-           { date: 5, type: 0, loc : 0, show:false },
-           { date: 9, type: 0, loc : 0, show:false }
-           */
-        );
+// Decrale Obstarcle Array
+var obsArray = new Array();
 
-/* Item Object Properties */
+/* Obstacle  Object Properties */
 function Obstacle(date,type){
-    //#TODO The location of obstacle's y value can be changed
     this.date = date;
     this.type = type;
     this.show = false;
-
+    //this.loc = 
+    //#TODO The location of obstacle's y value can be changed
 }
 
-function displayObstacles(timeObj){
-    for(var i = 0; i< obsArray.length; i++){
-        throwObstacle(timeObj.days,obsArray[i],i);
-        if(collisionCheck($("#runner"),$("#obs"+i))){
-
-            //#TODO Change the sound when collide with obstacle
-            //itemSound();
-            gameStop();
-            //clearInterval(obsArray[i].idItem);
-            //#TODO Showing Item bottom of the screen
+/* Generate Obstacle Array */
+function obsArrayGenerator(){
+    //set the number of types of obs
+    var typesObs = 2;
+    var obsStartSet = 5;
+    var obsInterval = 5;
+    if(obsStart >=Memories[0].date) console.log("Set the obsStart Value Again");
+    for(var i = 0; i < Memories.length; i++){
+        var interval;
+        var obsStart;
+        if(i == 0){
+            obsStart = obsStartSet;
+            interval = Memories[i].date;
+        }else{
+            obsStart = Memories[i-1].date;
+            interval = Memories[i].date-Memories[i-1].date;
+        }
+        for(var j = 1; j < Math.floor(interval/obsInterval)-1; j++){
+            var obsLoc = obsStart + obsInterval*j;
+            var randomFactorLoc= Math.floor(Math.random()*3)+1;
+            var randomFactorType = Math.floor(Math.random()*typesObs);
+            var randomFactorType = Math.floor(Math.random()*typesObs);
+            obsArray.push(new Obstacle(obsLoc+randomFactorLoc,randomFactorType));
         }
     }
 }
-/* Main Memories Function */
-function obstacleAnimation(){
-    //Initial Setting 
-    for(var i = 0; i< obsArray.length; i++){
-    }
-}
 
-/* Check whether Images are loads or not */
+/* Obstacle Initial Setting*/
 function obstacleSet(){
     var imagesCount = obsArray.length;
     var imagesLoaded = 0;
@@ -57,11 +58,27 @@ function obstacleSet(){
         img[i].onload = function(){
             imagesLoaded ++;
             if(imagesLoaded == imagesCount){
-                obstacleAnimation();
+                obsOnload = true;
             }
         }
     }
 }
+
+/* Function for Loop function */
+function displayObstacles(timeObj){
+    for(var i = 0; i< obsArray.length; i++){
+        throwObstacle(timeObj.days,obsArray[i],i);
+        if(collisionCheck($("#runner"),$("#obs"+i))){
+
+            //#TODO Change the sound when collide with obstacle
+            //itemSound();
+
+            gameStop();
+            //#TODO Showing Item bottom of the screen
+        }
+    }
+}
+
 /* Obstacle Movine Animation */
 
 function obsAnimate(opts) {
