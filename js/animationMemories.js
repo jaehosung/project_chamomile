@@ -1,4 +1,5 @@
-//function for Item Animation
+//function for Item Animation (Information about memories are saved as a file in memories.js)
+
 /* Item Object Properties */
 function Item(src,date){
     this.src = src;
@@ -9,31 +10,6 @@ function Item(src,date){
     this.date = date;
 }
 
-/*Display Memories function (loop)*/
-function displayMemories(timeObj){
-    for(var i = 0; i< Memories.length; i++){
-        throwItem(timeObj.days,Memories[i],i);
-        if(collisionCheck($("#runner"),Memories[i].item.src)&&Memories[i].item.get==false){
-            Memories[i].item.get=true;
-            itemSound();
-            clearInterval(Memories[i].idItem);
-            displayItem(Memories[i].item);
-            //#TODO Showing Item bottom of the screen
-        }
-    }
-}
-/* Main Memories Function */
-function memoriesAnimation(){
-    //Initial Setting 
-    for(var i = 0; i< Memories.length; i++){
-        imgQuery = $("#"+Memories[i].imgName);
-        imgQuery.css("position","absolute");
-        imgQuery.css("bottom",0); //#TODO How about display items randomly
-        imgQuery.css("right",-1*imgQuery.outerWidth(true));
-        Memories[i].item = new Item(imgQuery,Memories[i].date);
-    }
-
-}
 /* Check whether Images are loads or not */
 function memoriesSet(){
     var imagesCount = Memories.length;
@@ -55,7 +31,34 @@ function memoriesSet(){
         }
     }
 }
-/* Moving Main Function*/
+
+/* Set the id of memories*/
+function memoriesAnimation(){
+    //Initial Setting 
+    for(var i = 0; i< Memories.length; i++){
+        imgQuery = $("#"+Memories[i].imgName);
+        imgQuery.css("position","absolute");
+        imgQuery.css("bottom",0); //#TODO How about display items randomly
+        imgQuery.css("right",-1*imgQuery.outerWidth(true));
+        Memories[i].item = new Item(imgQuery,Memories[i].date);
+    }
+}
+
+/*Display Memories function (loop)*/
+function displayMemories(timeObj){
+    for(var i = 0; i< Memories.length; i++){
+        throwItem(timeObj.days,Memories[i],i);
+        if(collisionCheck($("#runner"),Memories[i].item.src)&&Memories[i].item.get==false){
+            Memories[i].item.get=true;
+            itemSound();
+            clearInterval(Memories[i].idItem);
+            displayItem(Memories[i].item);
+            //#TODO Showing Item bottom of the screen
+        }
+    }
+}
+
+/* Animation Functions for Memories*/
 function itemMove(element,delta,duration,nth){
     var containerWidth = $("#container").outerWidth(true);
     var itemWidth = element.outerWidth(true);
@@ -71,10 +74,6 @@ function itemMove(element,delta,duration,nth){
         }
     });
 };
-
-//Item Animation
-
-//This variable is for To stop this animation
 
 function itemAnimate(opts) {
     var start = new Date;
@@ -99,21 +98,6 @@ function throwItem(time,memories,nth){
         memories.item.show = true;
         itemMove(memories.item.src,linearDelta,mapSpeed*($("#container").outerWidth(true)+memories.item.width)/$(".road").outerWidth(true),nth);
     }
-}
-
-/* Collison Check*/
-function collisionCheck(element1, element2){
-    var a = new GameObj(element1);
-    var b = new GameObj(element2);
-    return !( ((a.y + a.height) < (b.y)) || (a.y > (b.y + b.height)) || ((a.x + a.width) < b.x) || (a.x > (b.x + b.width)) );
-}
-
-/* Object properties for Collision Check*/
-function GameObj(element){
-    this.x = element.offset().left;
-    this.y = element.offset().top;
-    this.width = element.outerWidth(true);
-    this.height = element.outerHeight(true);
 }
 
 // Sound for Jump
