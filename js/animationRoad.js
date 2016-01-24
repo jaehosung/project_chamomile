@@ -4,7 +4,7 @@ function mapMove(element,delta,duration){
     var to = $("#road1").outerWidth(true);
     roadAnimate({
         element : element,
-        delay : 1,
+        delay : 10,
         duration : duration,
         delta :delta,
         operation : function(delta){

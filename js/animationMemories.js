@@ -62,7 +62,7 @@ function itemMove(element,delta,duration,nth){
     itemAnimate({
         element : element,
         nth : nth,
-        delay : 1,
+        delay : 10,
         duration : duration,
         delta :delta,
         operation : function(delta){

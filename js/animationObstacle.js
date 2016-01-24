@@ -1,17 +1,21 @@
 var obsArray = new Array(
-    // Set Obstacle Types
-    { date: 3, type: 0, loc : 0, show:false },
-    { date: 6, type: 0, loc : 0, show:false },
-    { date: 9, type: 0, loc : 0, show:false }
-);
+        // Set Obstacle Types
+        /*
+           { date: 3, type: 0, loc : 0, show:false },
+           { date: 5, type: 0, loc : 0, show:false },
+           { date: 9, type: 0, loc : 0, show:false }
+           */
+        );
+
 /* Item Object Properties */
-function Obstacle(src,date){
-    this.src = src;
-    this.width = src.outerWidth(true);
-    this.loc = src.outerWidth(true)*-1;
-    this.show = false;
+function Obstacle(date,type){
+    //#TODO The location of obstacle's y value can be changed
     this.date = date;
+    this.type = type;
+    this.show = false;
+
 }
+
 function displayObstacles(timeObj){
     for(var i = 0; i< obsArray.length; i++){
         throwObstacle(timeObj.days,obsArray[i],i);
@@ -29,15 +33,7 @@ function displayObstacles(timeObj){
 function obstacleAnimation(){
     //Initial Setting 
     for(var i = 0; i< obsArray.length; i++){
-        imgQuery = $("#obs"+i);
-        imgQuery.css("position","absolute");
-        imgQuery.css("bottom",0); //#TODO How about display items randomly
-        imgQuery.css("right",-1*imgQuery.outerWidth(true));
-        //#TODO REMOVE THIS LINE
-        imgQuery.css("width",20);
-        //#TODO I will gonna change
     }
-
 }
 
 /* Check whether Images are loads or not */
@@ -50,6 +46,12 @@ function obstacleSet(){
         img[i].src ="imgs/obs"+obsArray[i].type+".png";
         img[i].id = "obs"+i;
         $("#container").append(img[i]);
+        imgQuery = $("#obs"+i);
+        imgQuery.css("position","absolute");
+        imgQuery.css("right",-100);
+        imgQuery.css("width",20);
+        imgQuery.css("height",30);
+        imgQuery.css("bottom",0); //#TODO  Using Switch I will gonna add the properties of obstacle
     }
     for(var i = 0; i<obsArray.length; i++){
         img[i].onload = function(){
@@ -97,7 +99,7 @@ function obsMove(element,delta,duration,nth){
     obsAnimate({
         element : element,
         nth : nth,
-        delay : 1,
+        delay : 10,
         duration : duration,
         delta :delta,
         operation : function(delta){
